@@ -19,7 +19,7 @@ export const IMAGE_TO_IMAGE_SAMPLES = [
   {
     title: 'Ghibli',
     prompt: '',
-    style: 'Ghibli',
+    style: 'ghibli',
     aspectRatio: '1:1',
     originalImage: '/style/4a.webp',
     preview: '/style/4g.png'
@@ -27,7 +27,7 @@ export const IMAGE_TO_IMAGE_SAMPLES = [
   {
       title: 'Ghibli',
       prompt: '',
-      style: 'Ghibli',
+      style: 'ghibli',
       aspectRatio: '1:1',
       originalImage: '/demo/biz.jpeg',
       preview: '/demo/ghibli.png'

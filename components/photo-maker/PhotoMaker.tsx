@@ -83,7 +83,7 @@ export function PhotoMaker() {
       setGeneratedImages(data.images);
       toast({
         title: t('common.success'),
-        description: t('common.exampleLoaded')
+        description: t('common.generated')
       });
     } catch (error) {
       toast({

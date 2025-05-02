@@ -8,11 +8,11 @@
     "generate": "生成图像",
     "options": "生成选项",
     "examples": "图像示例",
-    "generated": "生成的图像",
+    "generated": "图像已生成",
     "useExample": "使用此提示",
     "loading": "正在生成您的图像...",
     "error": "错误",
-    "success": "图像已生成！",
+    "success": "成功",
     "exampleLoaded": "示例设置已加载",
     "exampleError": "加载示例失败",
     "table": {

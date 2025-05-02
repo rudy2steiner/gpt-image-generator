@@ -1,5 +1,4 @@
 export const STYLES = [
-
   {
     value: 'ghibli',
     label: 'Ghibli',

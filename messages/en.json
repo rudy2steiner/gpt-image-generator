@@ -12,7 +12,7 @@
     "useExample": "Use This Prompt",
     "loading": "Generating your image...",
     "error": "Error",
-    "success": "Image generated!",
+    "success": "Success",
     "exampleLoaded": "Example settings loaded",
     "exampleError": "Failed to load example",
     "table": {
