@@ -1,0 +1,186 @@
+{
+  "common": {
+    "title": "GPT Image Generator",
+    "description": "Create stunning AI-generated images with our advanced GPT Image Generator. Transform your ideas into visual art instantly.",
+    "upload": "Upload Image",
+    "uploadUrl": "Upload from URL",
+    "add": "Add",
+    "generate": "Generate Image",
+    "options": "Generation Options",
+    "examples": "Image Examples",
+    "generated": "Generated Images",
+    "useExample": "Use This Prompt",
+    "loading": "Generating your image...",
+    "error": "Error",
+    "success": "Image generated!",
+    "exampleLoaded": "Example settings loaded",
+    "exampleError": "Failed to load example",
+    "table": {
+      "photos": "Input Images",
+      "prompt": "Prompt",
+      "style": "Style",
+      "negativePrompt": "Negative Prompt",
+      "actions": "Actions"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "gallery": "Image Gallery",
+    "blog": "Blog"
+  },
+  "form": {
+    "prompt": "Image Description",
+    "negativePrompt": "Avoid in Image",
+    "aspectRatio": "Image Size",
+    "style": "Art Style",
+    "numSteps": "Generation Steps",
+    "styleStrength": "Style Strength",
+    "numOutputs": "Number of Images",
+    "guidanceScale": "Guidance Scale",
+    "seed": "Seed",
+    "useDoodle": "Use Sketch",
+    "adapterScale": "Detail Level",
+    "adapterFactor": "Style Factor"
+  },
+  "hero": {
+    "tagline": "AI Image Creation",
+    "title": "GPT Image Generator: Transform Text to Art",
+    "description": "Experience the power of AI image generation. Our GPT Image Generator turns your descriptions into stunning visuals with advanced machine learning."
+  },
+  "benefits": {
+    "title": "Why Choose Our GPT Image Generator",
+    "items": {
+      "quality": {
+        "title": "High Quality",
+        "description": "Generate professional-grade images with our AI"
+      },
+      "styles": {
+        "title": "Multiple Styles",
+        "description": "Choose from various artistic styles and effects"
+      },
+      "speed": {
+        "title": "Fast Generation",
+        "description": "Get your AI-generated images in seconds"
+      },
+      "batch": {
+        "title": "Batch Creation",
+        "description": "Generate multiple variations at once"
+      }
+    }
+  },
+  "features": {
+    "title": "Generator Features",
+    "items": {
+      "styleTransfer": {
+        "title": "Style Transfer",
+        "description": "Apply artistic styles to your images"
+      },
+      "customPrompts": {
+        "title": "Custom Prompts",
+        "description": "Detailed control over image generation"
+      },
+      "batchProcessing": {
+        "title": "Batch Processing",
+        "description": "Create multiple images simultaneously"
+      },
+      "highResolution": {
+        "title": "High Resolution",
+        "description": "Generate detailed, clear images"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "How to Generate Images",
+    "steps": {
+      "upload": {
+        "number": "01",
+        "title": "Enter Prompt",
+        "description": "Describe the image you want to create"
+      },
+      "style": {
+        "number": "02",
+        "title": "Choose Style",
+        "description": "Select your preferred artistic style"
+      },
+      "generate": {
+        "number": "03",
+        "title": "Generate",
+        "description": "Let AI create your image"
+      },
+      "download": {
+        "number": "04",
+        "title": "Download",
+        "description": "Save your generated images"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What Users Say About Our Generator",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "Digital Artist",
+        "quote": "This GPT Image Generator has revolutionized my creative process.",
+        "image": "/testimonials/bc.jpeg"
+      },
+      {
+        "name": "James Chen",
+        "role": "Designer",
+        "quote": "The quality of generated images is consistently impressive.",
+        "image": "/testimonials/t5.jpeg"
+      },
+      {
+        "name": "Lisa Thompson",
+        "role": "Content Creator",
+        "quote": "Perfect for creating unique visuals quickly and easily.",
+        "image": "/testimonials/t3.jpeg"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How does the GPT Image Generator work?",
+        "answer": "Our AI uses advanced GPT technology to understand your text descriptions and generate corresponding images."
+      },
+      {
+        "question": "What types of images can I generate?",
+        "answer": "You can generate a wide range of images including artwork, photographs, illustrations, and more."
+      },
+      {
+        "question": "Is the image generator free to use?",
+        "answer": "Yes, our basic image generation features are free to use."
+      },
+      {
+        "question": "How long does image generation take?",
+        "answer": "Most images are generated within seconds, depending on complexity."
+      },
+      {
+        "question": "Can I edit generated images?",
+        "answer": "Yes, you can regenerate or apply different styles to your generated images."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Create Amazing Images?",
+    "description": "Start generating unique images with our GPT Image Generator",
+    "button": "Start Generating Now"
+  },
+  "footer": {
+    "product": "Product",
+    "community": "Community",
+    "features": "Features",
+    "examples": "Examples",
+    "blog": "Blog",
+    "pricing": "Pricing",
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "cookies": "Cookie Policy",
+    "rights": "All rights reserved."
+  }
+}

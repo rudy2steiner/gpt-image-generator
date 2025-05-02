@@ -1,0 +1,186 @@
+{
+  "common": {
+    "title": "GPT 图像生成器",
+    "description": "使用我们先进的 GPT 图像生成器创建令人惊叹的 AI 生成图像。立即将您的想法转化为视觉艺术。",
+    "upload": "上传图像",
+    "uploadUrl": "从 URL 上传",
+    "add": "添加",
+    "generate": "生成图像",
+    "options": "生成选项",
+    "examples": "图像示例",
+    "generated": "生成的图像",
+    "useExample": "使用此提示",
+    "loading": "正在生成您的图像...",
+    "error": "错误",
+    "success": "图像已生成！",
+    "exampleLoaded": "示例设置已加载",
+    "exampleError": "加载示例失败",
+    "table": {
+      "photos": "输入图像",
+      "prompt": "提示",
+      "style": "风格",
+      "negativePrompt": "负面提示",
+      "actions": "操作"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "gallery": "图像库",
+    "blog": "博客"
+  },
+  "form": {
+    "prompt": "图像描述",
+    "negativePrompt": "避免在图像中出现",
+    "aspectRatio": "图像尺寸",
+    "style": "艺术风格",
+    "numSteps": "生成步骤",
+    "styleStrength": "风格强度",
+    "numOutputs": "图像数量",
+    "guidanceScale": "引导尺度",
+    "seed": "种子",
+    "useDoodle": "使用草图",
+    "adapterScale": "细节级别",
+    "adapterFactor": "风格因子"
+  },
+  "hero": {
+    "tagline": "AI 图像创作",
+    "title": "GPT 图像生成器：将文本转化为艺术",
+    "description": "体验 AI 图像生成的强大功能。我们的 GPT 图像生成器利用先进的机器学习将您的描述转化为令人惊叹的视觉效果。"
+  },
+  "benefits": {
+    "title": "为什么选择我们的 GPT 图像生成器",
+    "items": {
+      "quality": {
+        "title": "高质量",
+        "description": "使用我们的 AI 生成专业级图像"
+      },
+      "styles": {
+        "title": "多种风格",
+        "description": "从各种艺术风格和效果中选择"
+      },
+      "speed": {
+        "title": "快速生成",
+        "description": "在几秒钟内获得您的 AI 生成图像"
+      },
+      "batch": {
+        "title": "批量创建",
+        "description": "一次生成多个变体"
+      }
+    }
+  },
+  "features": {
+    "title": "生成器功能",
+    "items": {
+      "styleTransfer": {
+        "title": "风格迁移",
+        "description": "将艺术风格应用于您的图像"
+      },
+      "customPrompts": {
+        "title": "自定义提示",
+        "description": "对图像生成进行详细控制"
+      },
+      "batchProcessing": {
+        "title": "批量处理",
+        "description": "同时创建多个图像"
+      },
+      "highResolution": {
+        "title": "高分辨率",
+        "description": "生成细节清晰的图像"
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "如何生成图像",
+    "steps": {
+      "upload": {
+        "number": "01",
+        "title": "输入提示",
+        "description": "描述您要创建的图像"
+      },
+      "style": {
+        "number": "02",
+        "title": "选择风格",
+        "description": "选择您喜欢的艺术风格"
+      },
+      "generate": {
+        "number": "03",
+        "title": "生成",
+        "description": "让 AI 创建您的图像"
+      },
+      "download": {
+        "number": "04",
+        "title": "下载",
+        "description": "保存您生成的图像"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "用户对我们的生成器的评价",
+    "items": [
+      {
+        "name": "Sarah Johnson",
+        "role": "数字艺术家",
+        "quote": "这个 GPT 图像生成器彻底改变了我的创作过程。",
+        "image": "/testimonials/bc.jpeg"
+      },
+      {
+        "name": "James Chen",
+        "role": "设计师",
+        "quote": "生成的图像质量始终令人印象深刻。",
+        "image": "/testimonials/t5.jpeg"
+      },
+      {
+        "name": "Lisa Thompson",
+        "role": "内容创作者",
+        "quote": "非常适合快速轻松地创建独特的视觉效果。",
+        "image": "/testimonials/t3.jpeg"
+      }
+    ]
+  },
+  "faq": {
+    "title": "常见问题",
+    "items": [
+      {
+        "question": "GPT 图像生成器是如何工作的？",
+        "answer": "我们的 AI 使用先进的 GPT 技术来理解您的文本描述并生成相应的图像。"
+      },
+      {
+        "question": "我可以生成哪些类型的图像？",
+        "answer": "您可以生成各种类型的图像，包括艺术品、照片、插图等。"
+      },
+      {
+        "question": "图像生成器可以免费使用吗？",
+        "answer": "是的，我们的基本图像生成功能是免费使用的。"
+      },
+      {
+        "question": "图像生成需要多长时间？",
+        "answer": "大多数图像在几秒钟内生成，具体取决于复杂性。"
+      },
+      {
+        "question": "我可以编辑生成的图像吗？",
+        "answer": "是的，您可以重新生成或将不同的风格应用于您生成的图像。"
+      }
+    ]
+  },
+  "cta": {
+    "title": "准备好创建令人惊叹的图像了吗？",
+    "description": "开始使用我们的 GPT 图像生成器生成独特的图像",
+    "button": "立即开始生成"
+  },
+  "footer": {
+    "product": "产品",
+    "community": "社区",
+    "features": "功能",
+    "examples": "示例",
+    "blog": "博客",
+    "pricing": "定价",
+    "support": "支持",
+    "helpCenter": "帮助中心",
+    "contact": "联系方式",
+    "legal": "法律",
+    "privacy": "隐私政策",
+    "terms": "使用条款",
+    "cookies": "Cookie 政策",
+    "rights": "保留所有权利。"
+  }
+}
