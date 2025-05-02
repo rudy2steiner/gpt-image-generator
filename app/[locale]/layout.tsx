@@ -51,7 +51,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-            <script defer data-domain="aihairstyle.co" src="https://app.pageview.app/js/script.js"></script>
+            <script defer data-domain="gptimagegenerator.com" src="https://app.pageview.app/js/script.js"></script>
        </head>
       <body className={inter.className}>
         <I18nProvider locale={locale} messages={messages} timeZone="UTC">
