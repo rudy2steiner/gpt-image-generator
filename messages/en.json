@@ -116,6 +116,7 @@
   },
   "testimonials": {
     "title": "What Users Say About Our Generator",
+    "subtitle": "Hear from our satisfied users",
     "items": [
       {
         "name": "Sarah Johnson",
@@ -182,5 +183,15 @@
     "terms": "Terms of Use",
     "cookies": "Cookie Policy",
     "rights": "All rights reserved."
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "description": "An error occurred while processing your request.",
+    "tryAgain": "Try again",
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist.",
+      "returnHome": "Return to home"
+    }
   }
 }

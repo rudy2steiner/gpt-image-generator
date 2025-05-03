@@ -182,5 +182,15 @@
     "terms": "使用条款",
     "cookies": "Cookie 政策",
     "rights": "保留所有权利。"
+  },
+  "error": {
+    "title": "Something went wrong!",
+    "description": "An error occurred while processing your request.",
+    "tryAgain": "Try again",
+    "notFound": {
+      "title": "Page not found",
+      "description": "The page you're looking for doesn't exist.",
+      "returnHome": "Return to home"
+    }
   }
 }

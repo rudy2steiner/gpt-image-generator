@@ -17,7 +17,7 @@ export async function POST(request: Request) {
           input: {
             prompt,
             aspect_ratio: aspectRatio,
-            num_outputs:1,
+            num_outputs: 1,
           }
         }
       );

@@ -5,45 +5,37 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LoadingIndicatorProps {
-  isLoading: boolean;
   label?: string;
-  startTime?: number;
   className?: string;
 }
 
-export function LoadingIndicator({ 
-  isLoading,
+export function LoadingIndicator({
   label = 'Loading',
-  startTime,
   className 
 }: LoadingIndicatorProps) {
   const [elapsed, setElapsed] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout>();
+  const startTimeRef = useRef<number>(Date.now());
 
   useEffect(() => {
-    if (isLoading && startTime) {
-      // Initial elapsed time
-      setElapsed(Math.floor((Date.now() - startTime) / 1000));
+    // Start counting elapsed time
+    startTimeRef.current = Date.now();
 
-      // Update elapsed time every second
-      intervalRef.current = setInterval(() => {
-        setElapsed(Math.floor((Date.now() - startTime) / 1000));
-      }, 1000);
-    }
+    // Update elapsed time every second
+    intervalRef.current = setInterval(() => {
+      const elapsedSeconds = Math.floor(
+        (Date.now() - startTimeRef.current) / 1000
+      );
+      setElapsed(elapsedSeconds);
+    }, 1000);
 
+    // Cleanup interval on unmount
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isLoading, startTime]);
-
-  // Reset elapsed time when loading stops
-  useEffect(() => {
-    if (!isLoading) {
-      setElapsed(0);
-    }
-  }, [isLoading]);
+  }, []); // Empty dependency array means this runs once on mount
 
   return (
     <div className={cn("flex items-center justify-center gap-2 text-sm", className)}>

@@ -12,6 +12,7 @@ export const config = {
   matcher: [
     // Match all paths except api, _next, static files and images
     '/((?!api|_next|_vercel|.*\\.|favicon.ico).*)',
-    '/'
+    '/',
+    '/(en|zh)/:path*'
   ]
 };

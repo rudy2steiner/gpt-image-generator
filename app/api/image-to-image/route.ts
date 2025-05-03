@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
 
-const MAX_POLLING_ATTEMPTS = 120; // Maximum number of polling attempts
-const POLLING_INTERVAL = 1000; // Polling interval in milliseconds
-
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
+
+const MAX_POLLING_ATTEMPTS = 60; // Maximum number of polling attempts
+const POLLING_INTERVAL = 1000; // Polling interval in milliseconds
+
 async function pollPrediction(id: string): Promise<any> {
   let attempts = 0;
 
@@ -47,25 +48,27 @@ export async function POST(request: Request) {
     const bytes = await imageFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const base64Image = buffer.toString('base64');
-    // Run multiple predictions in parallel
-     // Create prediction
-        const prediction = await replicate.predictions.create({
-          version: style === "ghibli"
-            ? "6c4785d791d08ec65ff2ca5e9a7a0c2b0ac4e07ffadfb367231aa16bc7a52cbb"
-            : "minimax/image-01",
-          input: style === "ghibli"
-            ? {
-                input_image: `data:image/jpeg;base64,${base64Image}`,
-                prompt: `Ghibli Studio style,${prompt}`
-              }
-            : {
-                subject_reference: `data:image/jpeg;base64,${base64Image}`,
-                prompt,
-                aspect_ratio: aspectRatio,
-              }
-        });
 
+    // Create prediction
+    const prediction = await replicate.predictions.create({
+      version: style === "ghibli"
+        ? "6c4785d791d08ec65ff2ca5e9a7a0c2b0ac4e07ffadfb367231aa16bc7a52cbb"
+        : "minimax/image-01",
+      input: style === "ghibli"
+        ? {
+            input_image: `data:image/jpeg;base64,${base64Image}`,
+            prompt: `Ghibli Studio style,${prompt}`
+          }
+        : {
+            subject_reference: `data:image/jpeg;base64,${base64Image}`,
+            prompt,
+            aspect_ratio: aspectRatio,
+          }
+    });
+
+    // Poll for results
     const output = await pollPrediction(prediction.id);
+
     return NextResponse.json({ images: [output] });
   } catch (error) {
     console.error('Image to image error:', error);

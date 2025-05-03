@@ -1,6 +1,8 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { LoadingIndicator } from '@/components/ui/loading-indicator';
@@ -8,7 +10,6 @@ import { UploadArea } from './UploadArea';
 import { useToast } from '@/hooks/use-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { StyleSelect } from './StyleSelect';
@@ -24,7 +25,7 @@ export function PhotoMaker() {
   const [style, setStyle] = useState("ghibli");
   const [aspectRatio, setAspectRatio] = useState("1:1");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generatedImages, setGeneratedImages] = useState<string[]>([]);
+  const [generatedImages, setGeneratedImages] = useState<Array<{ url: string; aspectRatio: string }>>([]);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [activeTab, setActiveTab] = useState<'text-to-image' | 'image-to-image'>('text-to-image');
 
@@ -46,10 +47,13 @@ export function PhotoMaker() {
       const data = await response.json();
       if (data.error) throw new Error(data.error);
       
-      setGeneratedImages(data.images);
+      setGeneratedImages((data.images || []).map((url: string) => ({
+        url,
+        aspectRatio
+      })));
       toast({
         title: t('common.success'),
-        description: t('common.exampleLoaded')
+        description: t('common.generated')
       });
     } catch (error) {
       toast({
@@ -63,7 +67,7 @@ export function PhotoMaker() {
   };
 
   const handleImageToImage = async () => {
-    if (!uploadedImage || !imagePrompt&&style=='No Style') return;
+    if (!uploadedImage || (!imagePrompt && style==='No Style')) return;
     
     const formData = new FormData();
     formData.append('image', uploadedImage);
@@ -80,7 +84,10 @@ export function PhotoMaker() {
       
       const data = await response.json();
       if (data.error) throw new Error(data.error);
-      setGeneratedImages(data.images);
+      setGeneratedImages((data.images || []).map((url: string) => ({
+        url,
+        aspectRatio
+      })));
       toast({
         title: t('common.success'),
         description: t('common.generated')
@@ -146,6 +153,15 @@ export function PhotoMaker() {
     }
     setStyle(template.style);
     setAspectRatio(template.aspectRatio);
+  };
+
+  // Get aspect ratio dimensions for CSS
+  const getAspectRatioStyle = (ratio: string) => {
+    const [width, height] = ratio.split(':').map(Number);
+    return {
+      aspectRatio: `${width}/${height}`,
+      objectFit: 'cover' as const
+    };
   };
 
   return (
@@ -226,25 +242,9 @@ export function PhotoMaker() {
 
                 <StyleSelect value={style} onChange={setStyle} />
 
-                <div className="space-y-2">
-                  <Label>Aspect Ratio</Label>
-                  <Select value={aspectRatio} onValueChange={setAspectRatio}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select ratio" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {ASPECT_RATIOS.map(ratio => (
-                        <SelectItem key={ratio.value} value={ratio.value}>
-                          {ratio.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
                 <Button 
                   onClick={handleImageToImage}
-                  disabled={!uploadedImage || !imagePrompt&&style=='No Style' || isGenerating}
+                  disabled={!uploadedImage || (!imagePrompt && style==='No Style') || isGenerating}
                   className="w-full"
                   size="lg"
                 >
@@ -262,21 +262,27 @@ export function PhotoMaker() {
           <Card className="p-6">
             <div className="space-y-6">
               <h3 className="text-lg font-medium">Generated Images</h3>
-              {generatedImages.length > 0 ? (
+              {Array.isArray(generatedImages) && generatedImages.length > 0 ? (
                 <div className="grid grid-cols-2 gap-4">
                   {generatedImages.map((image, index) => (
                     <div key={index} className="relative group">
-                      <img
-                        src={image}
-                        alt={`Generated ${index + 1}`}
-                        className="w-full rounded-lg shadow-lg object-cover aspect-square"
-                      />
+                      <div
+                        className="w-full rounded-lg overflow-hidden"
+                        style={getAspectRatioStyle(image.aspectRatio)}
+                      >
+                        <img
+                          src={image.url}
+                          alt={`Generated ${index + 1}`}
+                          className="w-full h-full"
+                          style={getAspectRatioStyle(image.aspectRatio)}
+                        />
+                      </div>
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
                         <Button
                           variant="ghost"
                           size="icon"
                           className="text-white hover:text-white hover:bg-white/20"
-                          onClick={() => handleDownload(image, index)}
+                          onClick={() => handleDownload(image.url, index)}
                         >
                           <Download className="h-6 w-6" />
                         </Button>
