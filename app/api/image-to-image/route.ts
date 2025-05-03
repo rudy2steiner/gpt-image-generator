@@ -5,7 +5,7 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-const MAX_POLLING_ATTEMPTS = 60; // Maximum number of polling attempts
+const MAX_POLLING_ATTEMPTS = 120; // Maximum number of polling attempts
 const POLLING_INTERVAL = 1000; // Polling interval in milliseconds
 
 async function pollPrediction(id: string): Promise<any> {
