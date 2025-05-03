@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
 
-const MAX_POLLING_ATTEMPTS = 60; // Maximum number of polling attempts
+const MAX_POLLING_ATTEMPTS = 120; // Maximum number of polling attempts
 const POLLING_INTERVAL = 1000; // Polling interval in milliseconds
 
 const replicate = new Replicate({
