@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
+import sharp from 'sharp';
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -7,6 +8,31 @@ const replicate = new Replicate({
 
 const MAX_POLLING_ATTEMPTS = 120; // Maximum number of polling attempts
 const POLLING_INTERVAL = 1000; // Polling interval in milliseconds
+
+
+
+
+async function getImageAspectRatio(imageUrl: string): Promise<string> {
+  try {
+    const response = await fetch(imageUrl);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const metadata = await sharp(buffer).metadata();
+
+    if (metadata.width && metadata.height) {
+      // Simplify the aspect ratio
+      const gcd = (a: number, b: number): number => b === 0 ? a : gcd(b, a % b);
+      const divisor = gcd(metadata.width, metadata.height);
+      return `${metadata.width/divisor}:${metadata.height/divisor}`;
+    }
+
+    return '1:1'; // Default fallback
+  } catch (error) {
+    console.error('Error getting image aspect ratio:', error);
+    return '1:1'; // Default fallback
+  }
+}
+
 
 async function pollPrediction(id: string): Promise<any> {
   let attempts = 0;
@@ -68,8 +94,9 @@ export async function POST(request: Request) {
 
     // Poll for results
     const output = await pollPrediction(prediction.id);
-
-    return NextResponse.json({ images: [output] });
+    const outputAspectRatio = await getImageAspectRatio(output);
+    console.log('ratio:'+outputAspectRatio);
+    return NextResponse.json({ images: [output], aspectRatio: outputAspectRatio});
   } catch (error) {
     console.error('Image to image error:', error);
     return NextResponse.json(

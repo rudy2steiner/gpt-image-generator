@@ -74,19 +74,20 @@ export function PhotoMaker() {
     formData.append('prompt', imagePrompt);
     formData.append('style', style);
     formData.append('aspectRatio', aspectRatio);
-    
+
     setIsGenerating(true);
     try {
       const response = await fetch('/api/image-to-image', {
         method: 'POST',
         body: formData
       });
-      
+
       const data = await response.json();
       if (data.error) throw new Error(data.error);
+      const r = data.aspectRatio;
       setGeneratedImages((data.images || []).map((url: string) => ({
         url,
-        aspectRatio
+        aspectRatio : r
       })));
       toast({
         title: t('common.success'),
@@ -241,7 +242,21 @@ export function PhotoMaker() {
                 </div>
 
                 <StyleSelect value={style} onChange={setStyle} />
-
+                <div className="space-y-2">
+                  <Label>Aspect Ratio</Label>
+                  <Select value={aspectRatio} onValueChange={setAspectRatio}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select ratio" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {ASPECT_RATIOS.map(ratio => (
+                        <SelectItem key={ratio.value} value={ratio.value}>
+                          {ratio.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
                 <Button 
                   onClick={handleImageToImage}
                   disabled={!uploadedImage || (!imagePrompt && style==='No Style') || isGenerating}

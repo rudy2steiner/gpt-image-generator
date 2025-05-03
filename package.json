@@ -39,6 +39,7 @@
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
     "replicate": "^0.27.1",
+    "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "zustand": "^4.5.1"
