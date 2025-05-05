@@ -42,7 +42,10 @@
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "zustand": "^4.5.1"
+    "zustand": "^4.5.1",
+    "@fingerprintjs/fingerprintjs": "4.5.1",
+    "uuid":"11.0.5",
+    "cookies-next":"5.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",

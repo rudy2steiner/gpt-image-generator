@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -16,6 +15,8 @@ import { StyleSelect } from './StyleSelect';
 import { ASPECT_RATIOS } from '@/lib/config/styles';
 import { Download } from 'lucide-react';
 import { SampleTemplates } from './SampleTemplates';
+import { UserIdentifier } from '@/lib/utils/identifier';
+import { useState, useEffect } from 'react';
 
 export function PhotoMaker() {
   const t = useTranslations();
@@ -28,6 +29,7 @@ export function PhotoMaker() {
   const [generatedImages, setGeneratedImages] = useState<Array<{ url: string; aspectRatio: string }>>([]);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [activeTab, setActiveTab] = useState<'text-to-image' | 'image-to-image'>('text-to-image');
+  const [fingerprint, setFingerprint] = useState<string | null>(null)
 
   const handleTextToImage = async () => {
     if (!prompt) return;
@@ -36,7 +38,7 @@ export function PhotoMaker() {
     try {
       const response = await fetch('/api/text-to-image', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-fingerprint': fingerprint },
         body: JSON.stringify({ 
           prompt,
           style,
@@ -79,6 +81,7 @@ export function PhotoMaker() {
     try {
       const response = await fetch('/api/image-to-image', {
         method: 'POST',
+        headers: { 'x-fingerprint': fingerprint },
         body: formData
       });
 
@@ -164,7 +167,13 @@ export function PhotoMaker() {
       objectFit: 'cover' as const
     };
   };
-
+   useEffect(() => {
+      async function getFingerprint() {
+        const fp = await UserIdentifier.getBrowserFingerprint()
+        setFingerprint(fp)
+      }
+      getFingerprint()
+    }, []);
   return (
     <div className="space-y-8">
       {/* Main Generation Section */}

@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
 import sharp from 'sharp';
+import { memoryQuota } from '@/lib/services/MemoryQuotaService';
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -63,7 +64,7 @@ export async function POST(request: Request) {
     const prompt = formData.get('prompt') as string;
     const style = formData.get('style') as string;
     const aspectRatio = formData.get('aspectRatio') as string;
-    
+
     if (!imageFile) {
       return NextResponse.json(
         { error: 'No image provided' },
@@ -74,7 +75,15 @@ export async function POST(request: Request) {
     const bytes = await imageFile.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const base64Image = buffer.toString('base64');
-
+    const hasQuota = await memoryQuota.checkAndUpdateQuota(request);
+    console.log('hasQuota:'+hasQuota+'-------');
+    // Run multiple predictions in parallel
+    if (!hasQuota) {
+     return NextResponse.json({error:'Today Free Quota Used Out!',
+          images:[],
+          code:201
+      });
+    }
     // Create prediction
     const prediction = await replicate.predictions.create({
       version: style === "ghibli"

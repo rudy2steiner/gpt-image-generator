@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import Replicate from 'replicate';
+import { memoryQuota } from '@/lib/services/MemoryQuotaService';
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
@@ -8,8 +9,15 @@ const replicate = new Replicate({
 export async function POST(request: Request) {
   try {
     const { prompt, style, aspectRatio } = await request.json();
-
+    const hasQuota = await memoryQuota.checkAndUpdateQuota(request);
+    console.log('hasQuota:'+hasQuota+'-------');
     // Run multiple predictions in parallel
+    if (!hasQuota) {
+     return NextResponse.json({error:'Today Free Quota Used Out!',
+          images:[],
+          code:201
+      });
+    }
     const predictions = await Promise.all([1].map(async () => {
       return replicate.run(
         `black-forest-labs/flux-1.1-pro`,
